@@ -1,6 +1,8 @@
 <template>
   <div class="">
-
+    <nuxt-link to="/users">
+      users
+    </nuxt-link>
   </div>
 </template>
 
