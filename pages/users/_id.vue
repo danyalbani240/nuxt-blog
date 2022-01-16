@@ -1,6 +1,6 @@
 <template>
-  <div>
-      hi this is user {{$route.params.id}}
+  <div class="text-4xl font-extrabold">
+      hi this is user: {{$route.params.id}}
   </div>
 </template>
 
