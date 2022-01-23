@@ -7,7 +7,7 @@
 <script>
 import PostList from '~/components/posts/PostList.vue'
 export default {
-  comments: {
+  components: {
     PostList,
   },
 }
