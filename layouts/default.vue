@@ -1,9 +1,17 @@
 <template>
-  <nuxt />
+  <div>
+    <Navigation />
+    <nuxt />
+  </div>
 </template>
 
 <script>
-export default {}
+import Navigation from "../components/Navigation";
+export default {
+  components:{
+    Navigation
+  }
+}
 </script>
 
 <style></style>
