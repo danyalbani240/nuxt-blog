@@ -1,5 +1,7 @@
 <template>
-  <div class="about-page"></div>
+  <div class="about-page">
+    about!!!
+  </div>
 </template>
 
 <script>
