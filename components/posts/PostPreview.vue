@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link to="posts/1">
+  <nuxt-link :to="{ 'posts/1': !admin, 'admin/1': !!admin }">
     <div class="post-preview">
       <img class="thumbnail" :src="thumbnail" alt="" />
       <div class="pre-content overflow-hidden">
@@ -26,6 +26,11 @@ export default {
     content: {
       type: String,
       required: true,
+    },
+
+    admin: {
+      type: Boolean,
+      default: false,
     },
   },
 }
