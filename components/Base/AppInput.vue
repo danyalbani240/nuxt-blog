@@ -2,8 +2,8 @@
   <input
     type="text"
     class="base-input"
-    :value="value"
-    @input="$emit('input', $event.target.value)"
+    v-bind:value="value"
+    v-on:input="$emit('input', $event.target.value)"
     v-if="!textArea"
   />
   <textarea
@@ -22,6 +22,10 @@ export default {
     },
     textArea: {
       type: Boolean,
+      required: false,
+    },
+    value: {
+      type: String,
       required: false,
     },
   },
