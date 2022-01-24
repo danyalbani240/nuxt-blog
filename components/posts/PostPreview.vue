@@ -1,6 +1,17 @@
 <template>
-  <nuxt-link :to="{ 'posts/1': !admin, 'admin/1': !!admin }">
+  <nuxt-link v-if="!admin" to="posts/1">
     <div class="post-preview">
+      <img class="thumbnail" :src="thumbnail" alt="" />
+      <div class="pre-content overflow-hidden">
+        <h3 class="pre-title text-2xl">{{ title }}</h3>
+        <p class="pre-content text-sm">
+          {{ content }}
+        </p>
+      </div>
+    </div>
+  </nuxt-link>
+  <nuxt-link v-else to="admin/1">
+     <div class="post-preview">
       <img class="thumbnail" :src="thumbnail" alt="" />
       <div class="pre-content overflow-hidden">
         <h3 class="pre-title text-2xl">{{ title }}</h3>
