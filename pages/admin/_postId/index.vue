@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import AppButton from '@/components/Base/AppButton.vue';
+import AppInput from '@/components/Base/AppInput.vue';
 export default {
   data() {
     return {
