@@ -1,9 +1,13 @@
 <template>
-  <div class="admin-page"></div>
+  <div class="admin-page">
+    <PostList />
+  </div>
 </template>
 
 <script>
+import PostList from '~/components/posts/PostList.vue'
 export default {
+  components: { PostList },
 
 }
 </script>
