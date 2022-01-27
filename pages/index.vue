@@ -34,6 +34,14 @@ export default {
         })
       }, 1500)
     })
+      .then((result) => {
+        console.log(result)
+        return result
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
     // setTimeout(() => {
     //   callback(null, {
     //     loadedPosts: [
