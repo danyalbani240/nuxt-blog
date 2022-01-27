@@ -16,64 +16,64 @@ export default {
   //     loadedPosts: [],
   //   }
   // },
-  async fetch(context) {
-    console.log(context)
-    if (context.store.getters.loadedPosts == 0) {
-      console.log(context)
+  // async fetch(context) {
 
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve({
-            loadedPosts: [
-              {
-                id: 1,
-                title: 'post-1',
-                content: 'post one content here',
-              },
-              {
-                id: 2,
-                title: 'post-2',
-                content: 'post two content here',
-              },
-            ],
-          })
-        }, 2000)
-      }).then((data) => context.store.commit('setPosts', data.loadedPosts))
-    }
+  //   if (context.store.getters.loadedPosts == 0) {
+  //     console.log(context)
 
-    // setTimeout(() => {
-    //   callback(null, {
-    //     loadedPosts: [
-    //       {
-    //         id: 1,
-    //         title: 'post-1',
-    //         content: 'post one content here',
-    //       },
-    //       {
-    //         id: 2,
-    //         title: 'post-2',
-    //         content: 'post two content here',
-    //       },
-    //     ],
-    //   })
-    // }, 1500)
-    // this.loadedPosts = await new Promise((resolve, reject) => {
-    //   setTimeout(() => {
-    //     resolve([
-    //       {
-    //         id: 1,
-    //         title: 'post-1',
-    //         content: 'post one content here',
-    //       },
-    //       {
-    //         id: 2,
-    //         title: 'post-2',
-    //         content: 'post two content here',
-    //       },
-    //     ])
-    //   }, 15000)
-    // })
-  },
+  //     return new Promise((resolve, reject) => {
+  //       setTimeout(() => {
+  //         resolve({
+  //           loadedPosts: [
+  //             {
+  //               id: 1,
+  //               title: 'post-1',
+  //               content: 'post one content here',
+  //             },
+  //             {
+  //               id: 2,
+  //               title: 'post-2',
+  //               content: 'post two content here',
+  //             },
+  //           ],
+  //         })
+  //       }, 2000)
+  //     }).then((data) => context.store.commit('setPosts', data.loadedPosts))
+  //   }
+
+  //   // setTimeout(() => {
+  //   //   callback(null, {
+  //   //     loadedPosts: [
+  //   //       {
+  //   //         id: 1,
+  //   //         title: 'post-1',
+  //   //         content: 'post one content here',
+  //   //       },
+  //   //       {
+  //   //         id: 2,
+  //   //         title: 'post-2',
+  //   //         content: 'post two content here',
+  //   //       },
+  //   //     ],
+  //   //   })
+  //   // }, 1500)
+  //   // this.loadedPosts = await new Promise((resolve, reject) => {
+  //   //   setTimeout(() => {
+  //   //     resolve([
+  //   //       {
+  //   //         id: 1,
+  //   //         title: 'post-1',
+  //   //         content: 'post one content here',
+  //   //       },
+  //   //       {
+  //   //         id: 2,
+  //   //         title: 'post-2',
+  //   //         content: 'post two content here',
+  //   //       },
+  //   //     ])
+  //   //   }, 15000)
+  //   // })
+  // },
   computed: {
     loadedPosts() {
       return this.$store.getters.loadedPosts
