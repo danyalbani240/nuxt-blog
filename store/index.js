@@ -1,6 +1,6 @@
-export const state = {
+export const state = () => ({
   loadedPosts: [],
-}
+})
 export const mutations = {
   setPosts(state, posts) {
     state.loadedPosts = posts
