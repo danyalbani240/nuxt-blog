@@ -1,21 +1,21 @@
 <template>
-  <nuxt-link v-if="!admin" to="posts/1">
+  <nuxt-link v-if="!admin" :to="`posts/${id}`">
     <div class="post-preview">
       <img class="thumbnail" :src="thumbnail" alt="" />
       <div class="pre-content overflow-hidden">
         <h3 class="pre-title text-2xl">{{ title }}</h3>
-        <p class="pre-content text-sm">
+        <p class="pre-content text-sm text-center">
           {{ content }}
         </p>
       </div>
     </div>
   </nuxt-link>
   <nuxt-link v-else to="admin/1">
-     <div class="post-preview">
+    <div class="post-preview">
       <img class="thumbnail" :src="thumbnail" alt="" />
       <div class="pre-content overflow-hidden">
         <h3 class="pre-title text-2xl">{{ title }}</h3>
-        <p class="pre-content text-sm">
+        <p class="pre-content text-sm text-center">
           {{ content }}
         </p>
       </div>
@@ -42,6 +42,10 @@ export default {
     admin: {
       type: Boolean,
       default: false,
+    },
+    id: {
+      type: Number,
+      required: true,
     },
   },
 }
