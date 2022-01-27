@@ -1,6 +1,7 @@
 <template>
   <div class="main-page">
-    <PostList :posts="loadedPosts" />
+    <div v-if="$fetchState.pending">Loading...</div>
+    <PostList v-else :posts="loadedPosts" />
   </div>
 </template>
 
@@ -10,37 +11,28 @@ export default {
   components: {
     PostList,
   },
-  // data() {
-  //   return {
-  //     loadedPosts: [],
-  //   }
-  // },
-  asyncData(context) {
-    return new Promise((resolve, reject) => {
+  data() {
+    return {
+      loadedPosts: [],
+    }
+  },
+  async fetch() {
+    this.loadedPosts = await new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve({
-          loadedPosts: [
-            {
-              id: 1,
-              title: 'post-1',
-              content: 'post one content here',
-            },
-            {
-              id: 2,
-              title: 'post-2',
-              content: 'post two content here',
-            },
-          ],
-        })
-      }, 1500)
+        resolve([
+          {
+            id: 1,
+            title: 'post-1',
+            content: 'post one content here',
+          },
+          {
+            id: 2,
+            title: 'post-2',
+            content: 'post two content here',
+          },
+        ])
+      }, 15000)
     })
-      .then((result) => {
-        console.log(result)
-        return result
-      })
-      .catch((err) => {
-        console.log(err)
-      })
 
     // setTimeout(() => {
     //   callback(null, {
