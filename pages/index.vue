@@ -1,6 +1,6 @@
 <template>
   <div class="main-page">
-    <PostList :posts="posts" />
+    <PostList :posts="loadedPosts" />
   </div>
 </template>
 
@@ -10,21 +10,28 @@ export default {
   components: {
     PostList,
   },
-  data() {
-    return {
-      posts: [
-        {
-          id: 1,
-          title: 'post-1',
-          content: 'post one content here',
-        },
-        {
-          id: 2,
-          title: 'post-2',
-          content: 'post two content here',
-        },
-      ],
-    }
+  // data() {
+  //   return {
+  //     loadedPosts: [],
+  //   }
+  // },
+  asyncData(context, callback) {
+    setTimeout(() => {
+      callback(null, {
+        loadedPosts: [
+          {
+            id: 1,
+            title: 'post-1',
+            content: 'post one content here',
+          },
+          {
+            id: 2,
+            title: 'post-2',
+            content: 'post two content here',
+          },
+        ],
+      })
+    }, 1500)
   },
 }
 </script>
