@@ -1,6 +1,6 @@
 <template>
   <div class="main-page">
-    <div v-if="$fetchState.pending">Loading...</div>
+    <div v-if="!loadedPosts">Loading...</div>
     <PostList v-else :posts="loadedPosts" />
   </div>
 </template>
@@ -11,28 +11,35 @@ export default {
   components: {
     PostList,
   },
-  data() {
-    return {
-      loadedPosts: [],
+  // data() {
+  //   return {
+  //     loadedPosts: [],
+  //   }
+  // },
+  async fetch(context) {
+    console.log(context)
+    if (context.store.getters.loadedPosts == 0) {
+      console.log(context)
+
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve({
+            loadedPosts: [
+              {
+                id: 1,
+                title: 'post-1',
+                content: 'post one content here',
+              },
+              {
+                id: 2,
+                title: 'post-2',
+                content: 'post two content here',
+              },
+            ],
+          })
+        }, 2000)
+      }).then((data) => context.store.commit('setPosts', data.loadedPosts))
     }
-  },
-  async fetch() {
-    this.loadedPosts = await new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve([
-          {
-            id: 1,
-            title: 'post-1',
-            content: 'post one content here',
-          },
-          {
-            id: 2,
-            title: 'post-2',
-            content: 'post two content here',
-          },
-        ])
-      }, 15000)
-    })
 
     // setTimeout(() => {
     //   callback(null, {
@@ -50,6 +57,27 @@ export default {
     //     ],
     //   })
     // }, 1500)
+    // this.loadedPosts = await new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     resolve([
+    //       {
+    //         id: 1,
+    //         title: 'post-1',
+    //         content: 'post one content here',
+    //       },
+    //       {
+    //         id: 2,
+    //         title: 'post-2',
+    //         content: 'post two content here',
+    //       },
+    //     ])
+    //   }, 15000)
+    // })
+  },
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts
+    },
   },
 }
 </script>
