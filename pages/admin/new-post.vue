@@ -2,10 +2,10 @@
   <div class="new-post">
     <form @submit.prevent="">
       <label>Title:</label>
-      <app-input v-model="title" placeholder="What is Javascript,...." />
+      <app-input v-model="post.title" placeholder="What is Javascript,...." />
       <label>content:</label>
       <app-input
-        v-model="content"
+        v-model="post.content"
         :textArea="true"
         placeholder="javscript is ....."
       />
@@ -17,11 +17,16 @@
 <script>
 import AppButton from '~/components/Base/AppButton.vue'
 import AppInput from '~/components/Base/AppInput.vue'
+import axios from 'axios'
 export default {
   data() {
     return {
-      title: '',
-      content: '',
+      post: {
+        title: '',
+        content: '',
+        date: Date.now(),
+        author: 'Danyal',
+      },
     }
   },
   components: {
@@ -30,7 +35,13 @@ export default {
   },
   methods: {
     formSubmit() {
-      console.log(this.title, this.content)
+      console.log(this.post)
+      axios
+        .post(
+          'https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts.json',
+          this.post
+        )
+        .then((res) => console.log(res))
     },
   },
 }
