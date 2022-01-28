@@ -41,7 +41,12 @@ export default {
           'https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts.json',
           this.post
         )
-        .then((res) => console.log(res))
+        .then((res) => {
+          console.log(res)
+          if (res.status == 200) {
+            this.$router.push('/')
+          }
+        })
     },
   },
 }
