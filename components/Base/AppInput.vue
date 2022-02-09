@@ -1,7 +1,7 @@
 <template>
   <input
     :type="type"
-    class="base-input"
+    class="base-input py-2 pl-4 focus:outline-none focus:border-gray-500 focus:border-4 border-2 rounded pr-10"
     v-bind:value="value"
     v-on:input="$emit('input', $event.target.value)"
     v-if="!textArea"
