@@ -1,3 +1,4 @@
+import axios from 'axios'
 export const state = () => ({
   loadedPosts: [],
 })
@@ -7,25 +8,22 @@ export const mutations = {
   },
 }
 export const actions = {
+  // getting the posts from firebase
   nuxtServerInit(vueContext, context) {
-    console.log('started')
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        vueContext.commit('setPosts', [
-          {
-            id: 1,
-            title: 'post-1',
-            content: 'post one content here',
-          },
-          {
-            id: 2,
-            title: 'post-2',
-            content: 'post two content here',
-          },
-        ])
-        resolve()
-      }, 2000)
-    })
+    return axios
+      .get('https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts.json')
+      .then((res) => {
+        let postsArray = []
+
+        for (const key in res.data) {
+          postsArray.push({ ...res.data[key], id: key })
+        }
+
+        vueContext.commit('setPosts', postsArray)
+      })
+      .catch((e) => {
+        console.log(e)
+      })
   },
   setPosts(context, posts) {
     context.commit('setPosts', posts)
