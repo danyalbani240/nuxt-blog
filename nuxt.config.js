@@ -34,4 +34,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  env: {
+    apiKey: 'AIzaSyAYRTmxni2EP6BXVebZBW1s0FVnwEE0xsg',
+  },
 }
