@@ -4,7 +4,7 @@
       >Create Post</app-button
     >
 
-    <PostList :admin="true" />
+    <PostList :posts="loadedPosts" :admin="true" />
   </div>
 </template>
 
@@ -13,6 +13,12 @@ import PostList from '~/components/posts/PostList.vue'
 import AppButton from '~/components/Base/AppButton.vue'
 export default {
   components: { PostList, AppButton },
+
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts
+    },
+  },
 }
 </script>
 
