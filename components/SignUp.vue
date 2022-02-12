@@ -5,7 +5,7 @@
   >
     <BaseInput
       placeholder="username"
-      :value="userData.username"
+      :value="username"
       @input="userData.username = $event"
     />
     <BaseInput
@@ -27,6 +27,7 @@
 <script>
 import BaseInput from '~/components/Base/AppInput.vue'
 import BaseButton from '~/components/Base/AppButton.vue'
+import axios from 'axios'
 export default {
   components: {
     BaseButton,
@@ -34,8 +35,8 @@ export default {
   },
   data() {
     return {
+      username: '',
       userData: {
-        username: '',
         email: '',
         password: '',
       },
@@ -43,7 +44,7 @@ export default {
   },
   methods: {
     handleSignUp() {
-      console.log(this.email, this.password)
+      this.$store.dispatch('signUp', this.userData)
     },
   },
 }
