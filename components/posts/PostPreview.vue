@@ -10,7 +10,7 @@
       </div>
     </div>
   </nuxt-link>
-  <nuxt-link v-else to="admin/1">
+  <nuxt-link v-else :to="`admin/${id}`">
     <div class="post-preview">
       <img class="thumbnail" :src="thumbnail" alt="" />
       <div class="pre-content overflow-hidden">
