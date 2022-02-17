@@ -1,22 +1,13 @@
 <template>
   <div class="new-post">
-    <form @submit.prevent="">
-      <label>Title:</label>
-      <app-input v-model="post.title" placeholder="What is Javascript,...." />
-      <label>content:</label>
-      <app-input
-        v-model="post.content"
-        :textArea="true"
-        placeholder="javscript is ....."
-      />
-      <app-button @click="formSubmit">Submit</app-button>
-    </form>
+    <BaseForm />
   </div>
 </template>
 
 <script>
 import AppButton from '~/components/Base/AppButton.vue'
 import AppInput from '~/components/Base/AppInput.vue'
+import BaseForm from '~/components/Base/BaseForm.vue'
 import axios from 'axios'
 export default {
   data() {
@@ -32,6 +23,7 @@ export default {
   components: {
     AppButton,
     AppInput,
+    BaseForm,
   },
   methods: {
     formSubmit() {
