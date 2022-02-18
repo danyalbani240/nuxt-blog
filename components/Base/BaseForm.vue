@@ -1,18 +1,29 @@
 <template>
   <form
     v-if="!editPostForm"
-    @submit.prevent="$emit('submit')"
+    @submit.prevent="
+      $emit('submit', {
+        title: title,
+        content: content,
+        date: Date.now(),
+        author: 'Danyal',
+      })
+    "
     class="flex flex-col mt-10 create-post-form"
   >
     <AppInput
       class="sm:w-5/12 w-11/12"
       label="Title"
+      :value="title"
+      @input="title = $event"
       :placeholder="'How Javascript Works'"
     />
     <AppInput
       :textArea="true"
       class="sm:w-5/12 mt-10 w-11/12"
       label="Content"
+      :value="content"
+      @input="content = $event"
       :placeholder="'javascript in background....'"
     />
     <AppButton class="mt-10 mx-auto"> AddPost </AppButton>
@@ -69,8 +80,10 @@ export default {
     }
   },
   mounted() {
-    this.title = this.postData.title
-    this.content = this.postData.content
+    if (!!this.postData) {
+      this.title = this.postData.title
+      this.content = this.postData.content
+    }
   },
 }
 </script>
