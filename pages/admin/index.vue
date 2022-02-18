@@ -1,8 +1,10 @@
 <template>
   <div class="admin-page">
-    <app-button @click="$router.push('/admin/new-post')"
-      >Create Post</app-button
-    >
+    <div class="flex items-center mt-10">
+      <app-button class="mx-auto" @click="$router.push('/admin/new-post')"
+        >Create Post</app-button
+      >
+    </div>
 
     <PostList :posts="loadedPosts" :admin="true" />
   </div>
