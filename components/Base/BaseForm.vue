@@ -24,7 +24,7 @@
         ...postData,
         title: title,
         content: content,
-        lastEdit: new Date(),
+        lastEdit: new Date().getTime(),
       })
     "
     class="flex flex-col mt-10 edit-post-form"
