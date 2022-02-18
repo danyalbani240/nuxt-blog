@@ -6,14 +6,16 @@
     <BaseInput
       :value="userData.email"
       @input="userData.email = $event"
+      :label="'email'"
       placeholder="example@email.com"
       :type="'email'"
     />
     <BaseInput
       :value="userData.password"
       @input="userData.password = $event"
+      :label="'password'"
       :type="'password'"
-      placeholder="password"
+      placeholder=""
     />
     <BaseButton> LogIn </BaseButton>
   </form>

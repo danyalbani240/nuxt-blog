@@ -5,14 +5,16 @@
   >
     <BaseInput
       placeholder="username"
-      :value="username"
+      :value="danyal"
       @input="userData.username = $event"
+      :label="username"
     />
     <BaseInput
       :value="userData.email"
       @input="userData.email = $event"
       placeholder="example@email.com"
       :type="'email'"
+      :label="email"
     />
     <BaseInput
       :value="userData.password"
