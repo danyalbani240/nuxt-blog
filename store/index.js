@@ -74,6 +74,15 @@ export const actions = {
       return Promise.resolve()
     } else {
       vueXcontext.commit('editPost', py)
+      let sending = { ...py }
+      delete sending.id
+      return axios
+        .put(
+          `https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts/${py.id}.json`,
+          sending
+        )
+        .then((res) => console.log(res))
+        .catch((e) => console.log(e))
     }
   },
   signUp(vueXContext, userData) {
