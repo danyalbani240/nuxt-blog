@@ -1,5 +1,9 @@
 <template>
-  <BaseForm @submit="handleSubmit" :editPostForm="true" />
+  <BaseForm
+    @submit="handleSubmit"
+    :postData="loadedPost"
+    :editPostForm="true"
+  />
 </template>
 
 <script>
@@ -19,6 +23,13 @@ export default {
   },
   methods: {
     handleSubmit() {},
+  },
+  computed: {
+    loadedPost() {
+      return this.$store.getters.loadedPosts.find(
+        (post) => post.id == this.$route.params.postId
+      )
+    },
   },
 }
 </script>
