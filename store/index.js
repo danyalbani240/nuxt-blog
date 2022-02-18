@@ -16,10 +16,16 @@ export const mutations = {
       state.loadedPosts.find((post) => post.id === editedPost.id)
     )
     state.loadedPosts[index] = editedPost
-    console.log(state.loadedPosts)
   },
   addPost(state, post) {
     state.loadedPosts.unshift(post)
+  },
+  deletePost(state, id) {
+    let index = state.loadedPosts.indexOf(
+      state.loadedPosts.find((post) => post.id === id)
+    )
+
+    state.loadedPosts.splice(index, index)
   },
   setToken(state, token) {
     state.token = token
@@ -30,7 +36,7 @@ export const actions = {
   nuxtServerInit(vueContext, context) {
     return axios
       .get(
-        'https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts.json?orderBy="date"&limitToLast=1'
+        'https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts.json?orderBy="date"&limitToLast=3'
       )
       .then((res) => {
         let postsArray = []
@@ -84,7 +90,6 @@ export const actions = {
           `https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts/${py.id}.json`,
           sending
         )
-        .then((res) => console.log(res))
         .catch((e) => console.log(e))
     }
   },
@@ -119,6 +124,13 @@ export const actions = {
         vueXContext.commit('addPost', { ...postData, id: res.data.name })
       })
       .catch((e) => console.log(e))
+  },
+  deletePost(vueXContext, id) {
+    return axios
+      .delete(`https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts/${id}.json`)
+      .then((res) => {
+        vueXContext.commit('deletePost', id)
+      })
   },
 }
 export const getters = {

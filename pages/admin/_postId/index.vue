@@ -3,6 +3,7 @@
     @submit="handleSubmit"
     :postData="loadedPost"
     :editPostForm="true"
+    @delete="handleDelete"
   />
 </template>
 
@@ -28,6 +29,13 @@ export default {
           id: this.$route.params.postId,
           ...newData,
         })
+        .then((res) => {
+          this.$router.push('/')
+        })
+    },
+    handleDelete() {
+      this.$store
+        .dispatch('deletePost', this.$route.params.postId)
         .then((res) => {
           this.$router.push('/')
         })

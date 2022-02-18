@@ -54,6 +54,9 @@
       @input="content = $event"
     />
     <AppButton class="mt-10 mx-auto"> EditPost </AppButton>
+    <AppButton @click="$emit('delete')" class="mt-10 text-red-700 mx-auto">
+      DeletePost
+    </AppButton>
   </form>
 </template>
 
