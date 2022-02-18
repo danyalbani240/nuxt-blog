@@ -22,11 +22,12 @@
     @submit.prevent="$emit('submit')"
     class="flex flex-col mt-10 edit-post-form"
   >
-    <AppInput class="sm:w-5/12 w-11/12" label="Title" />
+    <AppInput :value="title" class="sm:w-5/12 w-11/12" label="Title" />
     <AppInput
       :textArea="true"
       class="sm:w-5/12 mt-10 w-11/12"
       label="Content"
+      :value="content"
     />
     <AppButton class="mt-10 mx-auto"> EditPost </AppButton>
   </form>
@@ -35,6 +36,7 @@
 <script>
 import AppInput from './AppInput.vue'
 import AppButton from './AppButton.vue'
+import axios from 'axios'
 export default {
   components: { AppInput, AppButton },
   props: {
@@ -42,6 +44,20 @@ export default {
       type: Boolean,
       default: false,
     },
+    postData: {
+      type: Object,
+      required: false,
+    },
+  },
+  data() {
+    return {
+      title: '',
+      content: '',
+    }
+  },
+  mounted() {
+    this.title = this.postData.title
+    this.content = this.postData.content
   },
 }
 </script>
