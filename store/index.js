@@ -106,6 +106,11 @@ export const actions = {
       return true
     })
   },
+  createPost(vueXContext, postData) {
+    axios
+      .post('https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts/', postData)
+      .then((res) => console.log(res))
+  },
 }
 export const getters = {
   loadedPosts(state) {
