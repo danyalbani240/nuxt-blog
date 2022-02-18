@@ -18,6 +18,8 @@ export default {
     AppInput,
     BaseForm,
   },
+  middleware: 'auth',
+
   methods: {
     formSubmitHandle(post) {
       this.$store

@@ -22,6 +22,8 @@ export default {
     AppInput,
     BaseForm,
   },
+  middleware: 'auth',
+
   methods: {
     handleSubmit(newData) {
       this.$store
