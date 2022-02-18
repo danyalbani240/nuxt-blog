@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Cookie from 'js-cookie'
 export const state = () => ({
   loadedPosts: [],
   loadedPostsCounter: 6,
@@ -133,11 +134,12 @@ export const actions = {
       )
       .then((res) => {
         vueContext.commit('setToken', res.data.idToken)
-        document.cookie = 'jwt=' + res.data.idToken + ';max-age=3600;secure'
-        document.cookie =
-          'expirationDate=' +
-          (new Date().getTime() + res.data.expiresIn * 1000) +
-          ';'
+        Cookie.set('jwt', res.data.idToken)
+        Cookie.set(
+          'expirationDate',
+          new Date().getTime() + res.data.expiresIn * 1000
+        )
+
         vueContext.dispatch('invalidTime', +res.data.expiresIn * 1000)
       })
       .catch((e) => console.log(e))
