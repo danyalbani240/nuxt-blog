@@ -1,5 +1,5 @@
 export default function (context) {
-  if (!!context.getters.token) {
+  if (!context.store.getters.token) {
     context.redirect('/admin/auth')
   }
 }
