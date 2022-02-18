@@ -133,6 +133,8 @@ export const actions = {
       )
       .then((res) => {
         vueContext.commit('setToken', res.data.idToken)
+        document.cookie = 'jwt=' + res.data.idToken + ';max-age=3600;secure'
+        document.cookie = 'expirationDate=' + res.data.expiresIn * 1000 + ';'
         invalidTime(res.data.expiresIn * 1000)
       })
   },
