@@ -10,6 +10,7 @@
 import AppButton from '@/components/Base/AppButton.vue'
 import AppInput from '@/components/Base/AppInput.vue'
 import BaseForm from '~/components/Base/BaseForm.vue'
+import axios from 'axios'
 
 export default {
   data() {
@@ -22,7 +23,19 @@ export default {
     BaseForm,
   },
   methods: {
-    handleSubmit() {},
+    handleSubmit(newData) {
+      this.$store
+        .dispatch('editPost', {
+          id: this.$route.params.postId,
+          ...newData,
+        })
+        .then((result) => {
+          this.$router.push('/')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
   },
   computed: {
     loadedPost() {
