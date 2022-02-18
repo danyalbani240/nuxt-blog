@@ -5,22 +5,22 @@
   >
     <BaseInput
       placeholder="username"
-      :value="danyal"
-      @input="userData.username = $event"
-      :label="username"
+      :value="username"
+      @input="username = $event"
+      label="username"
     />
     <BaseInput
       :value="userData.email"
       @input="userData.email = $event"
       placeholder="example@email.com"
       :type="'email'"
-      :label="email"
+      label="email"
     />
     <BaseInput
       :value="userData.password"
       @input="userData.password = $event"
       :type="'password'"
-      placeholder="password"
+      label="password"
     />
     <BaseButton> Submit </BaseButton>
   </form>
@@ -46,7 +46,9 @@ export default {
   },
   methods: {
     handleSignUp() {
-      this.$store.dispatch('signUp', this.userData)
+      this.$store
+        .dispatch('signUp', this.userData)
+        .then((res) => console.log(res))
     },
   },
 }

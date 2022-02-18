@@ -93,27 +93,6 @@ export const actions = {
         .catch((e) => console.log(e))
     }
   },
-  signUp(vueXContext, userData) {
-    axios({
-      method: 'post',
-      url:
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
-        process.env.apiKey,
-      data: { ...userData, returnSecureToken: true },
-    })
-  },
-  signIn(vueContext, userData) {
-    return axios({
-      method: 'post',
-      url:
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
-        process.env.apiKey,
-      data: { ...userData, returnSecureToken: true },
-    }).then((res) => {
-      vueContext.commit('setToken', res.data.idToken)
-      return true
-    })
-  },
   createPost(vueXContext, postData) {
     return axios
       .post(
@@ -131,6 +110,26 @@ export const actions = {
       .then((res) => {
         vueXContext.commit('deletePost', id)
       })
+  },
+  //auth stuff
+  signUp(vueXContext, userData) {
+    return axios.post(
+      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
+        process.env.apiKey,
+      { ...userData, returnSecureToken: true }
+    )
+  },
+  signIn(vueContext, userData) {
+    return axios({
+      method: 'post',
+      url:
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
+        process.env.apiKey,
+      data: { ...userData, returnSecureToken: true },
+    }).then((res) => {
+      vueContext.commit('setToken', res.data.idToken)
+      return true
+    })
   },
 }
 export const getters = {
