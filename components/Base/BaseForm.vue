@@ -19,15 +19,28 @@
   </form>
   <form
     v-else-if="editPostForm"
-    @submit.prevent="$emit('submit')"
+    @submit.prevent="
+      $emit('submit', {
+        ...postData,
+        title: title,
+        content: content,
+        lastEdit: new Date(),
+      })
+    "
     class="flex flex-col mt-10 edit-post-form"
   >
-    <AppInput :value="title" class="sm:w-5/12 w-11/12" label="Title" />
+    <AppInput
+      :value="title"
+      @input="title = $event"
+      class="sm:w-5/12 w-11/12"
+      label="Title"
+    />
     <AppInput
       :textArea="true"
       class="sm:w-5/12 mt-10 w-11/12"
       label="Content"
       :value="content"
+      @input="content = $event"
     />
     <AppButton class="mt-10 mx-auto"> EditPost </AppButton>
   </form>
