@@ -11,28 +11,12 @@
 
 <script>
 export default {
-  asyncData(context) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({
-          loadedPost: {
-            id: 1,
-            title: ` post with id: ${context.params.id}`,
-            content: ` post is this with id: ${context.params.id} Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi magni optio
-              mollitia tenetur ipsa tempora totam, voluptatibus vero adipisci eius
-              voluptates, doloremque porro odit eos molestiae itaque voluptate est
-              temporibus! Impedit itaque cumque sint sunt a placeat expedita soluta
-              nulla aut? Odio maxime blanditiis optio suscipit veritatis. Labore libero,
-              quibusdam optio obcaecati placeat, ex tenetur, fuga voluptate perspiciatis
-              soluta voluptas totam perferendis laborum adipisci officia sapiente
-              aliquam? Sequi inventore ea eius, mollitia culpa accusamus tenetur ad
-              consequuntur quae expedita magnam incidunt quia modi porro exercitationem
-              doloremque unde laboriosam consectetur delectus perferendis dolore
-              nesciunt deleniti quo totam. Ducimus exercitationem id sit.`,
-          },
-        })
-      }, 2000)
-    }).then((data) => data)
+  computed: {
+    loadedPost() {
+      return this.$store.getters.loadedPosts.find(
+        (post) => post.id == this.$route.params.id
+      )
+    },
   },
 }
 </script>
