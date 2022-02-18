@@ -87,7 +87,7 @@ export const actions = {
       delete sending.id
       return axios
         .put(
-          `https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts/${py.id}.json`,
+          `https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts/${py.id}.json?auth=${vueXcontext.state.token}}`,
           sending
         )
         .catch((e) => console.log(e))
@@ -96,7 +96,7 @@ export const actions = {
   createPost(vueXContext, postData) {
     return axios
       .post(
-        'https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts.json',
+        'https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts.json?auth=${vueXcontext.state.token}',
         postData
       )
       .then((res) => {
@@ -106,7 +106,9 @@ export const actions = {
   },
   deletePost(vueXContext, id) {
     return axios
-      .delete(`https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts/${id}.json`)
+      .delete(
+        `https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts/${id}.json?auth=${vueXcontext.state.token}`
+      )
       .then((res) => {
         vueXContext.commit('deletePost', id)
       })
