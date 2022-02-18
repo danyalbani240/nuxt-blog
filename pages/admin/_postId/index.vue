@@ -10,7 +10,6 @@
 import AppButton from '@/components/Base/AppButton.vue'
 import AppInput from '@/components/Base/AppInput.vue'
 import BaseForm from '~/components/Base/BaseForm.vue'
-import axios from 'axios'
 
 export default {
   data() {
@@ -29,11 +28,8 @@ export default {
           id: this.$route.params.postId,
           ...newData,
         })
-        .then((result) => {
+        .then((res) => {
           this.$router.push('/')
-        })
-        .catch((err) => {
-          console.log(err)
         })
     },
   },
