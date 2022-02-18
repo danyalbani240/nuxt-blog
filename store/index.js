@@ -30,6 +30,9 @@ export const mutations = {
   setToken(state, token) {
     state.token = token
   },
+  deleteToken(state) {
+    state.token = null
+  },
 }
 export const actions = {
   // getting the posts from firebase
@@ -130,7 +133,13 @@ export const actions = {
       )
       .then((res) => {
         vueContext.commit('setToken', res.data.idToken)
+        invalidTime(res.data.expiresIn * 1000)
       })
+  },
+  invalidTime(vueXContext, duration) {
+    setTimeout(() => {
+      vueXContext.commit('deleteToken')
+    }, duration)
   },
 }
 export const getters = {
