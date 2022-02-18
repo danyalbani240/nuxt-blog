@@ -18,6 +18,9 @@ export const mutations = {
     state.loadedPosts[index] = editedPost
     console.log(state.loadedPosts)
   },
+  addPost(state, post) {
+    state.loadedPosts.unshift(post)
+  },
   setToken(state, token) {
     state.token = token
   },
@@ -107,9 +110,15 @@ export const actions = {
     })
   },
   createPost(vueXContext, postData) {
-    axios
-      .post('https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts/', postData)
-      .then((res) => console.log(res))
+    return axios
+      .post(
+        'https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts.json',
+        postData
+      )
+      .then((res) => {
+        vueXContext.commit('addPost', { ...postData, id: res.data.name })
+      })
+      .catch((e) => console.log(e))
   },
 }
 export const getters = {
