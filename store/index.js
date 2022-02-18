@@ -120,16 +120,15 @@ export const actions = {
     )
   },
   signIn(vueContext, userData) {
-    return axios({
-      method: 'post',
-      url:
+    return axios
+      .post(
         'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
-        process.env.apiKey,
-      data: { ...userData, returnSecureToken: true },
-    }).then((res) => {
-      vueContext.commit('setToken', res.data.idToken)
-      return true
-    })
+          process.env.apiKey,
+        { ...userData, returnSecureToken: true }
+      )
+      .then((res) => {
+        vueContext.commit('setToken', res.data.idToken)
+      })
   },
 }
 export const getters = {
