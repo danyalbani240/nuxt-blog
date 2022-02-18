@@ -15,7 +15,7 @@
       <img class="thumbnail" :src="thumbnail" alt="" />
       <div class="pre-content overflow-hidden">
         <h3 class="pre-title text-2xl">{{ title }}</h3>
-        <p class="pre-content text-sm text-center">
+        <p ref="content" class="pre-content text-sm text-center">
           {{ content }}
         </p>
       </div>
@@ -47,6 +47,10 @@ export default {
       type: String,
       required: true,
     },
+  },
+  mounted() {
+    document.querySelector('p.pre-content').innerText =
+      document.querySelector('p.pre-content').innerText.slice(0, 99) + '...'
   },
 }
 </script>
