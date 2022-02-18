@@ -11,8 +11,12 @@ export const mutations = {
   increasePostsCounter(state) {
     state.loadedPostsCounter += 6
   },
-  addPosts(state, newposts) {
-    state.loadedPosts.push(newposts)
+  editPost(state, editedPost) {
+    let index = state.loadedPosts.indexOf(
+      state.loadedPosts.find((post) => post.id === editedPost.id)
+    )
+    state.loadedPosts[index] = editedPost
+    console.log(state.loadedPosts)
   },
   setToken(state, token) {
     state.token = token
@@ -49,7 +53,7 @@ export const actions = {
         vueXcontext.commit('increasePostsCounter')
 
         let postsArray = []
-        console.log(res.data)
+
         for (const key in res.data) {
           postsArray.push({ ...res.data[key], id: key })
         }
@@ -60,11 +64,17 @@ export const actions = {
         console.log(e)
       })
   },
-  editPost(vueXcontext, newDAta) {
-    axios({
-      method: 'put',
-      url: 'https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts/',
-    })
+  editPost(vueXcontext, py) {
+    if (
+      vueXcontext.state.loadedPosts.find((post) => post.id === py.id).title ===
+        py.title &&
+      vueXcontext.state.loadedPosts.find((post) => post.id === py.id)
+        .content === py.content
+    ) {
+      return Promise.resolve()
+    } else {
+      vueXcontext.commit('editPost', py)
+    }
   },
   signUp(vueXContext, userData) {
     axios({
