@@ -149,6 +149,37 @@ export const actions = {
       vueXContext.commit('deleteToken')
     }, duration)
   },
+  startAuth(vueXContext, req) {
+    //get the cookie
+    if (!!req) {
+      const jwtCookie = req.headers.cookie
+      console.log(jwtCookie)
+    } else {
+      const jwtCookie = document.cookie
+        .split(';')
+        .find((key) => key.trim().startsWith('jwt='))
+      const expirationCookie = document.cookie
+        .split(';')
+        .find((key) => key.trim().startsWith('expirationDate='))
+      //if cookie is not setted return
+      if (!jwtCookie) {
+        return
+      } else {
+        //else get the token and expirationDate
+        const token = jwtCookie.split('=')[1]
+        const expirationDate = expirationCookie.split('=')[1]
+        if (new Date().getTime() >= expirationDate) {
+          return
+        } else {
+          vueXContext.dispatch(
+            'invalidTime',
+            expirationDate - new Date().getTime()
+          )
+          vueXContext.commit('setToken', token)
+        }
+      }
+    }
+  },
 }
 export const getters = {
   loadedPosts(state) {

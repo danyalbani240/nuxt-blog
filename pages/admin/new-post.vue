@@ -18,7 +18,7 @@ export default {
     AppInput,
     BaseForm,
   },
-  middleware: 'auth',
+  middleware: ['auth', 'get-auth'],
 
   methods: {
     formSubmitHandle(post) {

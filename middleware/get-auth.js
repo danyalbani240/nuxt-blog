@@ -1,3 +1,3 @@
 export default function (context) {
-  console.log(document.cookie)
+  context.store.dispatch('startAuth', context.req)
 }

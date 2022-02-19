@@ -14,7 +14,7 @@
 import PostList from '~/components/posts/PostList.vue'
 import AppButton from '~/components/Base/AppButton.vue'
 export default {
-  middleware: 'auth',
+  middleware: ['get-auth', 'auth'],
 
   components: { PostList, AppButton },
 
