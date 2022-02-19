@@ -137,9 +137,8 @@ export const actions = {
         Cookie.set('jwt', res.data.idToken)
         Cookie.set(
           'expirationDate',
-          new Date().getTime() + res.data.expiresIn * 1000
+          new Date().getTime() + +res.data.expiresIn * 1000
         )
-
         vueContext.dispatch('invalidTime', +res.data.expiresIn * 1000)
       })
       .catch((e) => console.log(e))
@@ -150,11 +149,32 @@ export const actions = {
     }, duration)
   },
   startAuth(vueXContext, req) {
-    //get the cookie
+    //check if it's server side ot client
     if (!!req) {
+      //server
       const jwtCookie = req.headers.cookie
-      console.log(jwtCookie)
+        .split(';')
+        .find((key) => key.trim().startsWith('jwt='))
+      const expirationCookie = req.headers.cookie
+        .split(';')
+        .find((key) => key.trim().startsWith('expirationDate='))
+      if (!jwtCookie) {
+        return
+      } else {
+        const token = jwtCookie.split('=')[1]
+        const expirationDate = expirationCookie.split('=')[1]
+        if (new Date().getTime() >= expirationDate) {
+          return
+        } else {
+          vueXContext.dispatch(
+            'invalidTime',
+            +expirationDate - new Date().getTime()
+          )
+          vueXContext.commit('setToken', token)
+        }
+      }
     } else {
+      //client
       const jwtCookie = document.cookie
         .split(';')
         .find((key) => key.trim().startsWith('jwt='))
@@ -168,12 +188,12 @@ export const actions = {
         //else get the token and expirationDate
         const token = jwtCookie.split('=')[1]
         const expirationDate = expirationCookie.split('=')[1]
-        if (new Date().getTime() >= expirationDate) {
+        if (new Date().getTime() >= +expirationDate) {
           return
         } else {
           vueXContext.dispatch(
             'invalidTime',
-            expirationDate - new Date().getTime()
+            +expirationDate - new Date().getTime()
           )
           vueXContext.commit('setToken', token)
         }
