@@ -4,6 +4,7 @@
       <app-button class="mx-auto" @click="$router.push('/admin/new-post')"
         >Create Post</app-button
       >
+      <app-button class="mx-auto" @click="handleLogout">log out</app-button>
     </div>
 
     <PostList :posts="loadedPosts" :admin="true" />
@@ -21,6 +22,11 @@ export default {
   computed: {
     loadedPosts() {
       return this.$store.getters.loadedPosts
+    },
+  },
+  methods: {
+    handleLogout() {
+      this.$store.dispatch('logout').then((res) => this.$router.push('/'))
     },
   },
 }
