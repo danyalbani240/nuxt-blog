@@ -200,6 +200,11 @@ export const actions = {
       }
     }
   },
+  logout(vueXContext) {
+    vueXContext.commit('deleteToken')
+    Cookie.remove('token')
+    Cookie.remove('expirationDate')
+  },
 }
 export const getters = {
   loadedPosts(state) {
