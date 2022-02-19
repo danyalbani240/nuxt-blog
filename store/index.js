@@ -152,6 +152,9 @@ export const actions = {
     //check if it's server side ot client
     if (!!req) {
       //server
+      if (!req.headers.cookie) {
+        return
+      }
       const jwtCookie = req.headers.cookie
         .split(';')
         .find((key) => key.trim().startsWith('jwt='))
@@ -175,6 +178,9 @@ export const actions = {
       }
     } else {
       //client
+      if (!document.cookie) {
+        return
+      }
       const jwtCookie = document.cookie
         .split(';')
         .find((key) => key.trim().startsWith('jwt='))
@@ -202,8 +208,9 @@ export const actions = {
   },
   logout(vueXContext) {
     vueXContext.commit('deleteToken')
-    Cookie.remove('token')
+    Cookie.remove('jwt')
     Cookie.remove('expirationDate')
+    return Promise.resolve()
   },
 }
 export const getters = {
