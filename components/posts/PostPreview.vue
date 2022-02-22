@@ -105,4 +105,7 @@ a:first-child img.thumbnail {
 .pre-content {
   height: 100px;
 }
+.pre-title {
+  margin: 20px 0;
+}
 </style>

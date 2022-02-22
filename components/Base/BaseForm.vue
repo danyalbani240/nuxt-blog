@@ -19,6 +19,13 @@
       :placeholder="'How Javascript Works'"
     />
     <AppInput
+      class="sm:w-5/12 mt-10 w-11/12"
+      label="thumbnail"
+      :value="thumbnail"
+      @input="thumbnail = $event"
+      :placeholder="''"
+    />
+    <AppInput
       :textArea="true"
       class="sm:w-5/12 mt-10 w-11/12"
       label="Content"
@@ -45,6 +52,13 @@
       @input="title = $event"
       class="sm:w-5/12 w-11/12"
       label="Title"
+    />
+    <AppInput
+      class="sm:w-5/12 mt-10 w-11/12"
+      label="thumbnail"
+      :value="thumbnail"
+      @input="thumbnail = $event"
+      :placeholder="''"
     />
     <AppInput
       :textArea="true"
@@ -80,6 +94,7 @@ export default {
     return {
       title: '',
       content: '',
+      thumbnail: '',
     }
   },
   mounted() {
