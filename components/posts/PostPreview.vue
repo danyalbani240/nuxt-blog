@@ -2,7 +2,7 @@
   <nuxt-link v-if="!admin" :to="`posts/${id}`">
     <div class="post-preview">
       <img class="thumbnail" :src="thumbnail" alt="" />
-      <div class="pre-content overflow-hidden">
+      <div class="pre-content-container overflow-hidden">
         <h3 class="pre-title text-2xl">{{ title }}</h3>
         <p class="pre-content text-sm text-center">
           {{ slicedContent }}
@@ -13,9 +13,9 @@
   <nuxt-link v-else :to="`admin/${id}`">
     <div class="post-preview">
       <img class="thumbnail" :src="thumbnail" alt="" />
-      <div class="pre-content overflow-hidden">
+      <div class="pre-content text-left overflow-hidden">
         <h3 class="pre-title text-2xl">{{ title }}</h3>
-        <p ref="content" class="pre-content text-sm text-center">
+        <p ref="content" class="pre-content text-sm text-left">
           {{ slicedContent }}
         </p>
       </div>
@@ -60,20 +60,49 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .post-preview {
-  border: 1px solid black;
-  width: 400px;
+  width: 333px;
   height: 300px;
 }
-.thumbnail {
+a:first-child {
   width: 100%;
+  margin-bottom: 70px;
+  height: 385px;
+}
+a:first-child .post-preview {
+  display: flex;
+  width: 100%;
+}
+a:first-child .post-preview .pre-content-container {
+  margin-left: 30px;
+}
+a:first-child .post-preview .pre-content-container h3 {
+  font-weight: 500;
+  font-size: 46px;
+  line-height: 54px;
+  letter-spacing: 0px;
+  color: #121212;
+  margin-bottom: 16px;
+  text-align: left;
+}
+a:first-child .post-preview .pre-content-container p {
+  font-size: 16px;
+  line-height: 26px;
+  color: #323947;
+  font-weight: 200;
+  text-align: left;
+}
+a:first-child img.thumbnail {
+  width: 80%;
+  height: 385px !important;
+}
+.thumbnail {
+  width: 333px;
   height: 200px;
+  border-radius: 8px;
 }
 .pre-content {
   height: 100px;
-}
-h3 {
-  text-align: center;
 }
 </style>
