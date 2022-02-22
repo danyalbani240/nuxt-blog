@@ -36,7 +36,7 @@ export default {
   width: 50%;
   height: 50%;
 }
-.nuxt-link-exact-active {
+.nuxt-link-exact-active:not(.profile-icon) {
   color: #e7165d;
   border-bottom: 2px solid #ff357a;
   padding-bottom: 4px;
