@@ -1,20 +1,22 @@
 <template>
-  <div class="posts-page">
-    <PostList :posts="loadedPosts" />
-    <div class="flex items-center mt-20">
-      <AppButton class="mx-auto" @click="loadMore">LoadMore</AppButton>
+  <div class="main-page flex-1 flex flex-col justify-between">
+    <div v-if="!loadedPosts">Loading...</div>
+    <PostList v-else :posts="loadedPosts" />
+    <div class="flex justify-center mb-2">
+      <AppButton @click="loadMore">LoadMore</AppButton>
     </div>
   </div>
 </template>
 
 <script>
-import PostList from '~/components/posts/PostList.vue'
+import PostList from '@/components/posts/PostList.vue'
 import AppButton from '~/components/Base/AppButton.vue'
 export default {
   components: {
     PostList,
     AppButton,
   },
+
   computed: {
     loadedPosts() {
       return this.$store.getters.loadedPosts

@@ -1,9 +1,9 @@
 <template>
-  <div class="main-page">
+  <div class="main-page flex-1 flex flex-col justify-between">
     <div v-if="!loadedPosts">Loading...</div>
     <PostList v-else :posts="loadedPosts" />
-    <div class="flex items-center mt-20">
-      <AppButton class="mx-auto" @click="loadMore">LoadMore</AppButton>
+    <div class="flex justify-center mb-2">
+      <AppButton @click="loadMore">LoadMore</AppButton>
     </div>
   </div>
 </template>
