@@ -103,6 +103,7 @@ export default {
     if (!!this.postData) {
       this.title = this.postData.title
       this.content = this.postData.content
+      this.thumbnail = this.postData.thumbnail
     }
   },
 }
