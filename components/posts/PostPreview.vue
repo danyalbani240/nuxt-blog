@@ -13,9 +13,9 @@
   <nuxt-link v-else :to="`admin/${id}`">
     <div class="post-preview">
       <img class="thumbnail" :src="thumbnail" alt="" />
-      <div class="pre-content text-left overflow-hidden">
+      <div class="pre-content-container overflow-hidden">
         <h3 class="pre-title text-2xl">{{ title }}</h3>
-        <p ref="content" class="pre-content text-sm text-left">
+        <p class="pre-content text-sm text-center">
           {{ slicedContent }}
         </p>
       </div>
