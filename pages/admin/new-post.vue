@@ -25,7 +25,6 @@ export default {
       this.$store
         .dispatch('createPost', post)
         .then((result) => {
-          console.log(result)
           this.$router.push('/')
         })
         .catch((err) => {})
