@@ -41,7 +41,6 @@ export default {
 
   methods: {
     handleSignIn() {
-      console.log(this.userData)
       this.$store
         .dispatch('signIn', this.userData)
         .then((result) => {
