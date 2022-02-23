@@ -7,6 +7,7 @@
         content: content,
         date: Date.now(),
         author: 'Danyal',
+        thumbnail: thumbnail,
       })
     "
     class="flex flex-col mt-10 create-post-form"
@@ -43,6 +44,7 @@
         title: title,
         content: content,
         lastEdit: new Date().getTime(),
+        thumbnail: thumbnail,
       })
     "
     class="flex flex-col mt-10 edit-post-form"
