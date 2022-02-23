@@ -54,7 +54,7 @@ export default {
   },
   computed: {
     slicedContent() {
-      return this.content.slice(0, 99)
+      return this.content.slice(0, 99) + '...'
     },
   },
 }
