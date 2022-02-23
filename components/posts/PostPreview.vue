@@ -102,9 +102,7 @@ a:first-child img.thumbnail {
   height: 200px;
   border-radius: 8px;
 }
-.pre-content {
-  height: 100px;
-}
+
 .pre-title {
   margin: 20px 0;
 }
