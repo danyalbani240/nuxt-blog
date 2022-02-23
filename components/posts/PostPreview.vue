@@ -94,7 +94,7 @@ a:first-child .post-preview .pre-content-container p {
   text-align: left;
 }
 a:first-child img.thumbnail {
-  width: 80%;
+  width: 60%;
   height: 385px !important;
 }
 .thumbnail {
