@@ -78,20 +78,19 @@ export const actions = {
       })
   },
   editPost(vueXcontext, py) {
+    //checking if the content are changed or not so do not send shit req
     if (
       vueXcontext.state.loadedPosts.find((post) => post.id === py.id).title ===
         py.title &&
       vueXcontext.state.loadedPosts.find((post) => post.id === py.id)
         .content === py.content &&
       vueXcontext.state.loadedPosts.find((post) => post.id === py.id)
-        .thumbnail === py.thumbnail &&
-      vueXcontext.state.loadedPosts.find((post) => post.id === py.id).title ===
-        py.title
+        .thumbnail === py.thumbnail
     ) {
       return Promise.resolve()
     } else if (
-      vueXcontext.state.loadedPosts.find((post) => post.id === py.id).title ===
-      py.title
+      vueXcontext.state.loadedPosts.find((post) => post.id === py.id).id ===
+      py.id
     ) {
       vueXcontext.commit('editPost', py)
       let sending = { ...py }
