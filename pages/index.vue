@@ -3,8 +3,8 @@
     <h1>Danyal Blog</h1>
     <div v-if="!loadedPosts">Loading...</div>
     <PostList v-else :posts="loadedPosts" />
-    <div class="flex justify-center mb-2">
-      <AppButton @click="loadMore">LoadMore</AppButton>
+    <div v-if="!isloaded" class="flex justify-center mb-2">
+      <AppButton @click="loadMore">loadPost</AppButton>
     </div>
   </div>
 </template>
@@ -21,6 +21,9 @@ export default {
   computed: {
     loadedPosts() {
       return this.$store.getters.loadedPosts
+    },
+    isloaded() {
+      return this.loadedPosts.length > 0
     },
   },
   methods: {
