@@ -84,7 +84,9 @@ export const actions = {
       vueXcontext.state.loadedPosts.find((post) => post.id === py.id)
         .content === py.content &&
       vueXcontext.state.loadedPosts.find((post) => post.id === py.id)
-        .thumbnail === py.thumbnail
+        .thumbnail === py.thumbnail &&
+      vueXcontext.state.loadedPosts.find((post) => post.id === py.id).title ===
+        py.title
     ) {
       return Promise.resolve()
     } else if (
