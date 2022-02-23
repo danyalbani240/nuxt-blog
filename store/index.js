@@ -37,23 +37,23 @@ export const mutations = {
 }
 export const actions = {
   // getting the posts from firebase
-  nuxtServerInit(vueContext, context) {
-    return axios
-      .get(
-        'https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts.json?orderBy="date"&limitToLast=3'
-      )
-      .then((res) => {
-        let postsArray = []
-        for (const key in res.data) {
-          postsArray.push({ ...res.data[key], id: key })
-        }
+  // nuxtServerInit(vueContext, context) {
+  //   return axios
+  //     .get(
+  //       'https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts.json?orderBy="date"&limitToLast=3'
+  //     )
+  //     .then((res) => {
+  //       let postsArray = []
+  //       for (const key in res.data) {
+  //         postsArray.push({ ...res.data[key], id: key })
+  //       }
 
-        vueContext.commit('setPosts', postsArray.reverse())
-      })
-      .catch((e) => {
-        console.log(e)
-      })
-  },
+  //       vueContext.commit('setPosts', postsArray.reverse())
+  //     })
+  //     .catch((e) => {
+  //       console.log(e)
+  //     })
+  // },
 
   loadNewPosts(vueXcontext) {
     return axios
@@ -84,8 +84,6 @@ export const actions = {
       vueXcontext.state.loadedPosts.find((post) => post.id === py.id)
         .content === py.content
     ) {
-      return Promise.resolve()
-    } else {
       vueXcontext.commit('editPost', py)
       let sending = { ...py }
       delete sending.id
@@ -95,12 +93,14 @@ export const actions = {
           sending
         )
         .catch((e) => console.log(e))
+    } else {
+      return Promise.resolve()
     }
   },
   createPost(vueXContext, postData) {
     return axios
       .post(
-        'https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts.json?auth=${vueXcontext.state.token}',
+        `https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts.json?auth=${vueXContext.state.token}`,
         postData
       )
       .then((res) => {
