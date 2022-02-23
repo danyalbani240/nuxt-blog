@@ -36,24 +36,24 @@ export const mutations = {
   },
 }
 export const actions = {
-  // getting the posts from firebase
-  // nuxtServerInit(vueContext, context) {
-  //   return axios
-  //     .get(
-  //       'https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts.json?orderBy="date"&limitToLast=3'
-  //     )
-  //     .then((res) => {
-  //       let postsArray = []
-  //       for (const key in res.data) {
-  //         postsArray.push({ ...res.data[key], id: key })
-  //       }
+  //getting the posts from firebase
+  nuxtServerInit(vueContext, context) {
+    return axios
+      .get(
+        'https://nuxt-bc2d9-default-rtdb.firebaseio.com/posts.json?orderBy="date"&limitToLast=3'
+      )
+      .then((res) => {
+        let postsArray = []
+        for (const key in res.data) {
+          postsArray.push({ ...res.data[key], id: key })
+        }
 
-  //       vueContext.commit('setPosts', postsArray.reverse())
-  //     })
-  //     .catch((e) => {
-  //       console.log(e)
-  //     })
-  // },
+        vueContext.commit('setPosts', postsArray.reverse())
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+  },
 
   loadNewPosts(vueXcontext) {
     return axios
