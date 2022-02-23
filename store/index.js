@@ -82,7 +82,14 @@ export const actions = {
       vueXcontext.state.loadedPosts.find((post) => post.id === py.id).title ===
         py.title &&
       vueXcontext.state.loadedPosts.find((post) => post.id === py.id)
-        .content === py.content
+        .content === py.content &&
+      vueXcontext.state.loadedPosts.find((post) => post.id === py.id)
+        .thumbnail === py.thumbnail
+    ) {
+      return Promise.resolve()
+    } else if (
+      vueXcontext.state.loadedPosts.find((post) => post.id === py.id).title ===
+      py.title
     ) {
       vueXcontext.commit('editPost', py)
       let sending = { ...py }
@@ -93,8 +100,6 @@ export const actions = {
           sending
         )
         .catch((e) => console.log(e))
-    } else {
-      return Promise.resolve()
     }
   },
   createPost(vueXContext, postData) {
